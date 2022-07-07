@@ -2,7 +2,7 @@
 
 ### Introduction
 
-Allows creators to register new projects for crowdfunding. Individuals can contribute a minimum of 0.01 ETH with no upper bound to a project. If users contribute 1ETH or more they receive a contributor badge in the form of a NFT token which is tradeable. If project goal is met, creator can withdraw funds, else all the funds wil be returned to contributors if goal not met within the speficied timeframe. 
+Allows creators to register new projects for crowdfunding. Individuals can contribute a minimum of 0.01 ETH with no upper bound to a project. If users contribute 1ETH or more they receive a contributor badge in the form of a NFT token which is tradeable. If project goal is met, creator can withdraw funds, else all the funds wil be returned to contributors if goal not met within the speficied timeframe.
 
 ### Specifications
 
@@ -32,11 +32,11 @@ Allows creators to register new projects for crowdfunding. Individuals can contr
 ### Design Decisions
 
 1. Will make use of the battle tested OpenZeppelin ERC721 contracts for the Badge / NFT component
-2. When supporters get their money back, a pull pattern is used as opposed to push pattern which many be costly to send back all the ETH to many users e.g using a loop. In push pattern, users can come and withdraw their contribution amounts
-3. Once goal has been reached a project creator cannot cancel the project, the project creator can onl withdraw the funds
+2. When supporters get their money back, a pull pattern is used as opposed to push pattern which many be costly to send back all the ETH to many users e.g using a loop. In pull pattern, users can come and withdraw their contribution amounts
+3. Once goal has been reached a project creator cannot cancel the project, the project creator can only withdraw the funds
 4. Project is open immediately for receiving contributions once its created
-5. Project details to be kept minimal no description, name, details, etc kept onchain => just project ID, goal, deadline, owner will 
-automatically be the project creator or caller of the function to create project
+5. Project details to be kept minimal no description, name, details, etc kept onchain => just project ID, goal, deadline, owner will
+   automatically be the project creator or caller of the function to create project
 6. Since minimal contribution is 0.01 will require minium project goal to be same amount
 7. Even if project is cancelled or fails to meet target, contributors keep their NFT's
 8. Design to be as minimal and as secure as possible
@@ -46,28 +46,36 @@ automatically be the project creator or caller of the function to create project
 Due to time constraints will not use Hardhat Advanced TypeScript config or Github paulrburg/solidity-template on this project
 but for the upcoming ones
 
-- Solidity https://docs.soliditylang.org/ 
-- Ethers   https://docs.ethers.io/v5/ 
-- Hardhat  https://docs.soliditylang.org/ 
-- OpenZeppelin ERC721 https://docs.openzeppelin.com/contracts/2.x/api/token/erc721 
-- Chai Testing https://www.chaijs.com/ 
-- JavaScript   https://www.javascript.com/ 
+- Solidity https://docs.soliditylang.org/
+- Ethers https://docs.ethers.io/v5/
+- Hardhat https://docs.soliditylang.org/
+- OpenZeppelin ERC721 https://docs.openzeppelin.com/contracts/2.x/api/token/erc721
+- Chai Testing https://www.chaijs.com/
+- JavaScript https://www.javascript.com/
 
-### Use, Test, Deploy 
+### Use, Test, Deploy
 
-1. Install packages => npm install 
+1. Install packages => npm install
 2. Run local hardhat node => npx hardhat node
 3. Run tests => npx hardhat test
-4. Deploy  => npx hardhat run --network localhost scripts/deploy.js
+4. Deploy => npx hardhat run --network localhost scripts/deploy.js
 
 ## Security Analysis Done on RemixIDE
 
 1. Slither
+
 - no issues picked directly linked to contracts
-2. Mythril 
+
+2. Mythril
+
 - no serious issues detected
 - only aspects of Low warning for ERC165 which is not related to our contracts
 
+# TO DO 
 
-
-
+- fix failign test
+- fix logic related to failign test
+- remove numerous modifiers where possible
+- use clone pattern for factory 
+- gas optimizations 
+- make code cleaner
